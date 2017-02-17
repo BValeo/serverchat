@@ -1,0 +1,23 @@
+{
+  "name": "chatserver",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BValeo/serverchat.git"
+  },
+  "author": "BValeo",
+  "license": "ISC",
+  "dependencies": {
+    "express": "4.14.1",
+    "socket.io": "1.7.3"
+  },
+  "bugs": {
+    "url": "https://github.com/BValeo/serverchat/issues"
+  },
+  "homepage": "https://github.com/BValeo/serverchat#readme"
+}
