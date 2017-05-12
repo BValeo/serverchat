@@ -10,11 +10,23 @@ server.listen(port, function () {
 
 app.use(express.static(__dirname + '/public'));
 
+
 io.on('connection', function (socket) {
 
-  socket.on('new message', function (data) {
-    socket.emit('new message', {
-      message: data
-    });
-  });
+//при подключении
+socket.on('add user', function (username) {
+    socket.username = username;
+});
+
+
+socket.on('new message', function(message){
+	var socketid;
+
+	for(var index in io.sockets){
+		if(io.sockets[index].username == message.nickname) socketid = io.sockets[index].id;
+	}
+
+	io.sockets.socket(socketid).emit('new message', message);
+});
+
 });
