@@ -35,4 +35,17 @@ io.on('connection', function (socket) {
 
 		console.log('client disconnect');
 	});
+
+	socket.on('new message', function(username, toUsername, data, time, isMine, type){
+		result = {
+			'username' : username,
+			'toUsername' : toUsername,
+			'message' : data,
+			'time' : data,
+			'isMine' : isMine,
+			'type' : type,
+		};
+
+		socket.emit('new message', result);
+	});
 });
