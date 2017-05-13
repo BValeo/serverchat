@@ -37,7 +37,10 @@ io.on('connection', function (socket) {
 
 	socket.on('new message', function(username, data, time, isMine, type){
 		console.log('new MESSAGE');
-		socket.emit('new message', {
+
+		id = connections[users.indexOf(username)];
+
+		io.sockets.socket(id).emit('new message', {
 			'username' : username,
 			'message' : data,
 			'time' : time,
