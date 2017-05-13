@@ -15,7 +15,9 @@ server.listen(port, function () {
 app.use(express.static(__dirname + '/public'));
 
 io.on('connection', function (socket) {
+
 	socket.on('register user', function (username) {
+		console.log('register user');
 		connection.push(socket.id);
 		users.push(username);
 		socket.emit("add user", {'msg' : 'All good'});
@@ -30,5 +32,7 @@ io.on('connection', function (socket) {
 				break;
 			}
 		}
+
+		console.log('client disconnect');
 	});
 });
