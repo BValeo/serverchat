@@ -14,27 +14,21 @@ server.listen(port, function () {
 
 app.use(express.static(__dirname + '/public'));
 
-
-/*io.on('connection', function (socket) {
-
-socket.on('register user', function (username) {
-	connection.push(socket.id);
-	users.push(username);
-	socket.emit("add user", {'msg' : 'All good'});
-});
-
-
-socket.on('new message', function(message){
-	socket.emit('new message', message);
-});
-
-});*/
-
-
 io.on('connection', function (socket) {
 	socket.on('register user', function (username) {
 		connection.push(socket.id);
 		users.push(username);
 		socket.emit("add user", {'msg' : 'All good'});
+	});
+
+
+	socket.on('disconnect', function(){
+		for(var i = 0; i < connection.length; i ++){
+			if(connections[i] = socket.id) {
+				connections.splice(i, 1);
+				users.splice(i, 1);
+				break;
+			}
+		}
 	});
 });
