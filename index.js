@@ -25,7 +25,7 @@ io.on('connection', function (socket) {
 
 
 	socket.on('disconnect', function(){
-		for(var i = 0; i < connection.length; i ++){
+		for(var i = 0; i < connections.length; i ++){
 			if(connections[i] = socket.id) {
 				connections.splice(i, 1);
 				users.splice(i, 1);
