@@ -40,7 +40,7 @@ io.on('connection', function (socket) {
 
 		var id;
 
-		for(int i = 0; i < users.length; i ++){
+		for(var i = 0; i < users.length; i ++){
 			if(users[i] == username) {
 				id = connections[i];
 				console.log(username + ' - ' + id);
