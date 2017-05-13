@@ -40,7 +40,7 @@ io.on('connection', function (socket) {
 
 		id = connections[users.indexOf(username)];
 
-		io.sockets.socket(id).emit('new message', {
+		io.to(id).emit('new message', {
 			'username' : username,
 			'message' : data,
 			'time' : time,
