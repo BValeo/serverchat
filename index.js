@@ -37,14 +37,13 @@ io.on('connection', function (socket) {
 	});
 
 	socket.on('new message', function(username, data, time, isMine, type){
-		result = {
+		console.log('new MESSAGE');
+		socket.emit('new message', {
 			'username' : username,
 			'message' : data,
 			'time' : data,
 			'isMine' : isMine,
 			'type' : type,
-		};
-
-		socket.emit('new message', result);
+		});
 	});
 });
