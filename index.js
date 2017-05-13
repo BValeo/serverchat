@@ -5,8 +5,9 @@ var io = require('socket.io')(server);
 var port = process.env.PORT || 3000;
 
 
-users = [];
-connections = [];
+
+users = {};
+//connections = [];
 
 server.listen(port, function () {
   console.log('Server listening at port %d', port);
@@ -18,48 +19,39 @@ io.on('connection', function (socket) {
 
 	socket.on('register user', function (username) {
 		console.log('register user');
-		connections.push(socket.id);
-		users.push(username);
+		if(users.username === undefined) 
+			users.username = socket.id;
 	});
 
 
 	socket.on('disconnect', function(){
-		for(var i = 0; i < connections.length; i ++){
-			if(connections[i] = socket.id) {
-				connections.splice(i, 1);
-				users.splice(i, 1);
-				break;
+		for(var key in users){
+			if(users[key] == socket.id) {
+				delete users.key;
 			}
 		}
 
 		console.log('client disconnect');
 	});
 
-	socket.on('new message', function(username, data, time, isMine, type){
+	socket.on('new message', function(to, from, data, time, isMine, type){
 		console.log('new MESSAGE');
 
 		var id;
 
-		for(var i = 0; i < users.length; i ++){
-			if(users[i] == username) {
-				id = connections[i];
-				console.log(username + ' - ' + id);
-				break;
-			}
+		for(var key in  users){
+			if(key == to) id = users[key];
+			break;
 		}
 
-		console.log(socket.id);
-
-
-
 		io.to(id).emit('new message', {
-			'username' : username,
+			'username' : from,
 			'message' : data,
 			'time' : time,
 			'isMine' : isMine,
 			'type' : type,
 		});
 
-		console.log('sended');
+		console.log('sended')
 	});
 });
