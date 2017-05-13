@@ -18,7 +18,7 @@ io.on('connection', function (socket) {
 
 	socket.on('register user', function (username) {
 		console.log('register user');
-		connection.push(socket.id);
+		connections.push(socket.id);
 		users.push(username);
 		socket.emit("add user", {'msg' : 'All good'});
 	});
