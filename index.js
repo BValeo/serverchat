@@ -16,7 +16,7 @@ io.on('connection', function (socket) {
 //при подключении
 socket.on('add user', function (username) {
     socket.username = username;
-    socket.emit("user added", "All good");
+    socket.emit("user added", {"mes" : "All good"});
 });
 
 
