@@ -15,7 +15,7 @@ server.listen(port, function () {
 app.use(express.static(__dirname + '/public'));
 
 
-io.on('connection', function (socket) {
+/*io.on('connection', function (socket) {
 
 socket.on('register user', function (username) {
 	connection.push(socket.id);
@@ -28,4 +28,13 @@ socket.on('new message', function(message){
 	socket.emit('new message', message);
 });
 
+});*/
+
+
+io.on('connection', function (socket) {
+	socket.on('register user', function (username) {
+		connection.push(socket.id);
+		users.push(username);
+		socket.emit("add user", {'msg' : 'All good'});
+	});
 });
