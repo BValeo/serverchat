@@ -20,7 +20,6 @@ io.on('connection', function (socket) {
 		console.log('register user');
 		connections.push(socket.id);
 		users.push(username);
-		socket.emit("add user", {'msg' : 'All good'});
 	});
 
 
@@ -41,7 +40,7 @@ io.on('connection', function (socket) {
 		socket.emit('new message', {
 			'username' : username,
 			'message' : data,
-			'time' : data,
+			'time' : time,
 			'isMine' : isMine,
 			'type' : type,
 		});
