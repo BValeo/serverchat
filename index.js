@@ -38,7 +38,19 @@ io.on('connection', function (socket) {
 	socket.on('new message', function(username, data, time, isMine, type){
 		console.log('new MESSAGE');
 
-		id = connections[users.indexOf(username)];
+		var id;
+
+		for(int i = 0; i < users.length; i ++){
+			if(users[i] == username) {
+				id = connections[i];
+				console.log(username + ' - ' + id);
+				break;
+			}
+		}
+
+		console.log(socket.id);
+
+
 
 		io.to(id).emit('new message', {
 			'username' : username,
@@ -47,5 +59,7 @@ io.on('connection', function (socket) {
 			'isMine' : isMine,
 			'type' : type,
 		});
+
+		console.log('sended');
 	});
 });
