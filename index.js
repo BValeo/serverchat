@@ -16,11 +16,12 @@ io.on('connection', function (socket) {
 //при подключении
 socket.on('add user', function (username) {
     socket.username = username;
+    socket.emit("user added", "All good");
 });
 
 
 socket.on('new message', function(message){
-	socket.broadcast.emit('new message', 'hello friends!');
+	socket.emit('new message', message);
 });
 
 });
