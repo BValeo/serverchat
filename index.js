@@ -32,6 +32,11 @@ io.on('connection', function (socket) {
 		console.log('====END LIST USERS====');
 	});
 
+	socket.on('delete user', function(user){
+		console.log('deleting user is ===' + users[user]);
+		delete users[user];
+	});
+
 
 	socket.on('disconnect', function(){
 		for(var key in users){
