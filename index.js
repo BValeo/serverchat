@@ -51,14 +51,7 @@ io.on('connection', function (socket) {
 	socket.on('new message', function(to, from, data, time, isMine, type){
 		console.log('==========new MESSAGE===============');
 
-		var id = "null";
-
-		for(var key in  users){
-			if(key == to) id = users[key];
-			break;
-		}
-
-		io.to(id).emit('new message', {
+		io.to(users[to]).emit('new message', {
 			'username' : from,
 			'message' : data,
 			'time' : time,
