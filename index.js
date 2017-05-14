@@ -44,7 +44,7 @@ io.on('connection', function (socket) {
 			break;
 		}
 
-		io.to(id).emit('new message', {
+		io.to(socket.id).emit('new message', {
 			'username' : from,
 			'message' : data,
 			'time' : time,
