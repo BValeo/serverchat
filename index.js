@@ -19,8 +19,8 @@ io.on('connection', function (socket) {
 
 	socket.on('register user', function (username) {
 		console.log('register user');
-		if(users.username === undefined) 
-			users.username = socket.id;
+		if(users[username] === undefined) 
+			users[username] = socket.id;
 	});
 
 
