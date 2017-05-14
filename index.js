@@ -24,6 +24,15 @@ io.on('connection', function (socket) {
 	});
 
 
+	socket.on('print list users', function(){
+		console.log('====START LIST USERS====');
+		for(var key in users){
+			console.log('Ключ: ' + key + '== socket.id - ' + users[key]);
+		}
+		console.log('====END LIST USERS====');
+	});
+
+
 	socket.on('disconnect', function(){
 		for(var key in users){
 			if(users[key] == socket.id) {
@@ -35,16 +44,16 @@ io.on('connection', function (socket) {
 	});
 
 	socket.on('new message', function(to, from, data, time, isMine, type){
-		console.log('new MESSAGE');
+		console.log('==========new MESSAGE===============');
 
-		var id;
+		var id = "null";
 
 		for(var key in  users){
 			if(key == to) id = users[key];
 			break;
 		}
 
-		io.to(socket.id).emit('new message', {
+		io.to(id).emit('new message', {
 			'username' : from,
 			'message' : data,
 			'time' : time,
@@ -52,6 +61,6 @@ io.on('connection', function (socket) {
 			'type' : type,
 		});
 
-		console.log('sended')
+		console.log('============sended=============')
 	});
 });
